@@ -8,12 +8,12 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [navigate, setNavigate] = useState(false);
 
-    const submit = async e => {
+    const submit = async (e) => {
         e.preventDefault();
 
         await axios.post('register', {
             name, email, password
-        });
+        },{withCredentials:true});
 
         setNavigate(true);
     }
@@ -28,7 +28,7 @@ export const Register = () => {
 
             <div className="form-floating">
                 <input className="form-control" placeholder="Name"
-                       onChange={e => setName(e.target.value)}
+                    onChange={e => setName(e.target.value)}
                 />
                 <label>Name</label>
             </div>
