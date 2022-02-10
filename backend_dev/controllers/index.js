@@ -32,12 +32,12 @@ const login = async(req, res)=>{
             message: "invalid credntials"
         })
     }
-    const token = jwt.toString({_id:user._id},'secret')
+    const token = jwt.sign({_id:user._id.toString()},'secret')
     console.log("Token :"+ token)
     res.cookie('jwt',token,{
         httpOnly: true,
         SameSite: "None",
-        
+        secure: true,
         maxAge: 24 * 60 * 60* 1000 // 1day
     })
     res.json({message: "success"})
